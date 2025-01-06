@@ -28,16 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            searchControl1 = new DevExpress.XtraEditors.SearchControl();
+            repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
+            FreeTextSearch = new DevExpress.XtraEditors.SearchControl();
             RecipeGridControl = new DevExpress.XtraGrid.GridControl();
             RecipeView = new DevExpress.XtraGrid.Views.Layout.LayoutView();
             ImageCol = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             layoutViewField_layoutViewColumn1_4 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             CategoryCol = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             layoutViewField_layoutViewColumn1_3 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
-            ImageUrl = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
-            layoutViewField_layoutViewColumn1_2 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             CreatorCol = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
             layoutViewField_layoutViewColumn1_1 = new DevExpress.XtraGrid.Views.Layout.LayoutViewField();
             NameCol = new DevExpress.XtraGrid.Columns.LayoutViewColumn();
@@ -49,43 +47,57 @@
             gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            ((System.ComponentModel.ISupportInitialize)searchControl1.Properties).BeginInit();
+            labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            CategoryDropDown = new DevExpress.XtraEditors.ComboBoxEdit();
+            CreatorDropDown = new DevExpress.XtraEditors.ComboBoxEdit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemPictureEdit1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)FreeTextSearch.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)RecipeGridControl).BeginInit();
             ((System.ComponentModel.ISupportInitialize)RecipeView).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryItemPictureEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewField_layoutViewColumn1_4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewField_layoutViewColumn1_3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutViewField_layoutViewColumn1_2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewField_layoutViewColumn1_1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewField_layoutViewColumn1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewCard1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)CategoryDropDown.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)CreatorDropDown.Properties).BeginInit();
             SuspendLayout();
             // 
-            // searchControl1
+            // repositoryItemPictureEdit1
             // 
-            searchControl1.Location = new System.Drawing.Point(12, 25);
-            searchControl1.Name = "searchControl1";
-            searchControl1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Repository.ClearButton(), new DevExpress.XtraEditors.Repository.SearchButton() });
-            searchControl1.Size = new System.Drawing.Size(100, 20);
-            searchControl1.TabIndex = 0;
+            repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
+            repositoryItemPictureEdit1.PictureInterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Low;
+            repositoryItemPictureEdit1.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.ByteArray;
+            repositoryItemPictureEdit1.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
+            // 
+            // FreeTextSearch
+            // 
+            FreeTextSearch.Client = RecipeGridControl;
+            FreeTextSearch.Location = new System.Drawing.Point(12, 26);
+            FreeTextSearch.Name = "FreeTextSearch";
+            FreeTextSearch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Repository.ClearButton(), new DevExpress.XtraEditors.Repository.SearchButton() });
+            FreeTextSearch.Properties.Client = RecipeGridControl;
+            FreeTextSearch.Size = new System.Drawing.Size(174, 20);
+            FreeTextSearch.TabIndex = 0;
             // 
             // RecipeGridControl
             // 
             RecipeGridControl.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             RecipeGridControl.DataSource = typeof(RecipeModel);
-            RecipeGridControl.Location = new System.Drawing.Point(0, 0);
+            RecipeGridControl.Location = new System.Drawing.Point(192, 0);
             RecipeGridControl.MainView = RecipeView;
             RecipeGridControl.Name = "RecipeGridControl";
-            RecipeGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemPictureEdit1 });
-            RecipeGridControl.Size = new System.Drawing.Size(808, 585);
+            RecipeGridControl.Size = new System.Drawing.Size(1271, 917);
             RecipeGridControl.TabIndex = 1;
             RecipeGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { RecipeView, gridView1 });
             // 
             // RecipeView
             // 
-            RecipeView.CardMinSize = new System.Drawing.Size(393, 339);
-            RecipeView.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] { ImageCol, CategoryCol, ImageUrl, CreatorCol, NameCol });
+            RecipeView.CardMinSize = new System.Drawing.Size(393, 359);
+            RecipeView.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] { ImageCol, CategoryCol, CreatorCol, NameCol });
             RecipeView.GridControl = RecipeGridControl;
             RecipeView.Name = "RecipeView";
             RecipeView.OptionsBehavior.AllowExpandCollapse = false;
@@ -95,10 +107,12 @@
             RecipeView.OptionsItemText.TextToControlDistance = 9;
             RecipeView.OptionsMultiRecordMode.MultiColumnScrollBarOrientation = DevExpress.XtraGrid.Views.Layout.ScrollBarOrientation.Vertical;
             RecipeView.OptionsMultiRecordMode.MultiRowScrollBarOrientation = DevExpress.XtraGrid.Views.Layout.ScrollBarOrientation.Vertical;
-            RecipeView.OptionsView.AllowHotTrackFields = false;
+            RecipeView.OptionsView.AnimationType = DevExpress.XtraGrid.Views.Base.GridAnimationType.AnimateAllContent;
+            RecipeView.OptionsView.ContentAlignment = System.Drawing.ContentAlignment.TopCenter;
             RecipeView.OptionsView.ShowCardCaption = false;
             RecipeView.OptionsView.ShowCardExpandButton = false;
-            RecipeView.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.ShowAlways;
+            RecipeView.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
+            RecipeView.OptionsView.ShowHeaderPanel = false;
             RecipeView.OptionsView.ViewMode = DevExpress.XtraGrid.Views.Layout.LayoutViewMode.MultiColumn;
             RecipeView.TemplateCard = layoutViewCard1;
             RecipeView.CustomUnboundColumnData += RecipeView_CustomUnboundColumnData;
@@ -111,24 +125,20 @@
             ImageCol.LayoutViewField = layoutViewField_layoutViewColumn1_4;
             ImageCol.Name = "ImageCol";
             ImageCol.Tag = "";
-            ImageCol.UnboundDataType = typeof(SixLabors.ImageSharp.Image);
-            // 
-            // repositoryItemPictureEdit1
-            // 
-            repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
-            repositoryItemPictureEdit1.PictureInterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Low;
-            repositoryItemPictureEdit1.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.ByteArray;
-            repositoryItemPictureEdit1.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
             // 
             // layoutViewField_layoutViewColumn1_4
             // 
             layoutViewField_layoutViewColumn1_4.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Center;
-            layoutViewField_layoutViewColumn1_4.ContentVertAlignment = DevExpress.Utils.VertAlignment.Center;
+            layoutViewField_layoutViewColumn1_4.ContentVertAlignment = DevExpress.Utils.VertAlignment.Top;
             layoutViewField_layoutViewColumn1_4.EditorPreferredWidth = 381;
-            layoutViewField_layoutViewColumn1_4.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleCenter;
+            layoutViewField_layoutViewColumn1_4.ImageOptions.Alignment = System.Drawing.ContentAlignment.TopCenter;
             layoutViewField_layoutViewColumn1_4.Location = new System.Drawing.Point(0, 0);
+            layoutViewField_layoutViewColumn1_4.MaxSize = new System.Drawing.Size(389, 270);
+            layoutViewField_layoutViewColumn1_4.MinSize = new System.Drawing.Size(389, 270);
             layoutViewField_layoutViewColumn1_4.Name = "layoutViewField_layoutViewColumn1_4";
-            layoutViewField_layoutViewColumn1_4.Size = new System.Drawing.Size(389, 30);
+            layoutViewField_layoutViewColumn1_4.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 0, 2);
+            layoutViewField_layoutViewColumn1_4.Size = new System.Drawing.Size(389, 270);
+            layoutViewField_layoutViewColumn1_4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             layoutViewField_layoutViewColumn1_4.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             layoutViewField_layoutViewColumn1_4.TextSize = new System.Drawing.Size(0, 0);
             layoutViewField_layoutViewColumn1_4.TextVisible = false;
@@ -144,28 +154,14 @@
             // layoutViewField_layoutViewColumn1_3
             // 
             layoutViewField_layoutViewColumn1_3.EditorPreferredWidth = 323;
-            layoutViewField_layoutViewColumn1_3.Location = new System.Drawing.Point(0, 114);
+            layoutViewField_layoutViewColumn1_3.Location = new System.Drawing.Point(0, 326);
+            layoutViewField_layoutViewColumn1_3.MaxSize = new System.Drawing.Size(389, 28);
+            layoutViewField_layoutViewColumn1_3.MinSize = new System.Drawing.Size(389, 28);
             layoutViewField_layoutViewColumn1_3.Name = "layoutViewField_layoutViewColumn1_3";
-            layoutViewField_layoutViewColumn1_3.Size = new System.Drawing.Size(389, 24);
+            layoutViewField_layoutViewColumn1_3.Size = new System.Drawing.Size(389, 29);
+            layoutViewField_layoutViewColumn1_3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             layoutViewField_layoutViewColumn1_3.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             layoutViewField_layoutViewColumn1_3.TextSize = new System.Drawing.Size(49, 13);
-            // 
-            // ImageUrl
-            // 
-            ImageUrl.Caption = "ImageUrl";
-            ImageUrl.FieldName = "ImageUrl";
-            ImageUrl.LayoutViewField = layoutViewField_layoutViewColumn1_2;
-            ImageUrl.Name = "ImageUrl";
-            ImageUrl.UnboundType = DevExpress.Data.UnboundColumnType.String;
-            // 
-            // layoutViewField_layoutViewColumn1_2
-            // 
-            layoutViewField_layoutViewColumn1_2.EditorPreferredWidth = 323;
-            layoutViewField_layoutViewColumn1_2.Location = new System.Drawing.Point(0, 86);
-            layoutViewField_layoutViewColumn1_2.Name = "layoutViewField_layoutViewColumn1_2";
-            layoutViewField_layoutViewColumn1_2.Size = new System.Drawing.Size(389, 28);
-            layoutViewField_layoutViewColumn1_2.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
-            layoutViewField_layoutViewColumn1_2.TextSize = new System.Drawing.Size(49, 13);
             // 
             // CreatorCol
             // 
@@ -178,9 +174,12 @@
             // layoutViewField_layoutViewColumn1_1
             // 
             layoutViewField_layoutViewColumn1_1.EditorPreferredWidth = 323;
-            layoutViewField_layoutViewColumn1_1.Location = new System.Drawing.Point(0, 58);
+            layoutViewField_layoutViewColumn1_1.Location = new System.Drawing.Point(0, 298);
+            layoutViewField_layoutViewColumn1_1.MaxSize = new System.Drawing.Size(389, 28);
+            layoutViewField_layoutViewColumn1_1.MinSize = new System.Drawing.Size(389, 28);
             layoutViewField_layoutViewColumn1_1.Name = "layoutViewField_layoutViewColumn1_1";
             layoutViewField_layoutViewColumn1_1.Size = new System.Drawing.Size(389, 28);
+            layoutViewField_layoutViewColumn1_1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             layoutViewField_layoutViewColumn1_1.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             layoutViewField_layoutViewColumn1_1.TextSize = new System.Drawing.Size(49, 13);
             // 
@@ -195,9 +194,12 @@
             // layoutViewField_layoutViewColumn1
             // 
             layoutViewField_layoutViewColumn1.EditorPreferredWidth = 323;
-            layoutViewField_layoutViewColumn1.Location = new System.Drawing.Point(0, 30);
+            layoutViewField_layoutViewColumn1.Location = new System.Drawing.Point(0, 270);
+            layoutViewField_layoutViewColumn1.MaxSize = new System.Drawing.Size(389, 28);
+            layoutViewField_layoutViewColumn1.MinSize = new System.Drawing.Size(389, 28);
             layoutViewField_layoutViewColumn1.Name = "layoutViewField_layoutViewColumn1";
             layoutViewField_layoutViewColumn1.Size = new System.Drawing.Size(389, 28);
+            layoutViewField_layoutViewColumn1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             layoutViewField_layoutViewColumn1.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             layoutViewField_layoutViewColumn1.TextSize = new System.Drawing.Size(49, 13);
             // 
@@ -206,7 +208,7 @@
             layoutViewCard1.CustomizationFormText = "TemplateCard";
             layoutViewCard1.GroupBordersVisible = false;
             layoutViewCard1.HeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
-            layoutViewCard1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutViewField_layoutViewColumn1_1, layoutViewField_layoutViewColumn1_2, layoutViewField_layoutViewColumn1_3, layoutViewField_layoutViewColumn1_4, layoutViewField_layoutViewColumn1 });
+            layoutViewCard1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutViewField_layoutViewColumn1_1, layoutViewField_layoutViewColumn1_3, layoutViewField_layoutViewColumn1_4, layoutViewField_layoutViewColumn1 });
             layoutViewCard1.Name = "layoutViewCard1";
             layoutViewCard1.OptionsItemText.TextToControlDistance = 9;
             layoutViewCard1.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
@@ -261,39 +263,96 @@
             gridColumn5.Visible = true;
             gridColumn5.VisibleIndex = 4;
             // 
+            // labelControl1
+            // 
+            labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            labelControl1.Appearance.Options.UseFont = true;
+            labelControl1.Location = new System.Drawing.Point(12, 9);
+            labelControl1.Name = "labelControl1";
+            labelControl1.Size = new System.Drawing.Size(70, 14);
+            labelControl1.TabIndex = 3;
+            labelControl1.Text = "Free Search";
+            // 
+            // labelControl2
+            // 
+            labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            labelControl2.Appearance.Options.UseFont = true;
+            labelControl2.Location = new System.Drawing.Point(12, 68);
+            labelControl2.Name = "labelControl2";
+            labelControl2.Size = new System.Drawing.Size(46, 14);
+            labelControl2.TabIndex = 4;
+            labelControl2.Text = "Creator";
+            // 
+            // labelControl3
+            // 
+            labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+            labelControl3.Appearance.Options.UseFont = true;
+            labelControl3.Location = new System.Drawing.Point(12, 126);
+            labelControl3.Name = "labelControl3";
+            labelControl3.Size = new System.Drawing.Size(56, 14);
+            labelControl3.TabIndex = 6;
+            labelControl3.Text = "Category";
+            // 
+            // CategoryDropDown
+            // 
+            CategoryDropDown.Location = new System.Drawing.Point(12, 146);
+            CategoryDropDown.Name = "CategoryDropDown";
+            CategoryDropDown.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            CategoryDropDown.Properties.DropDownRows = 12;
+            CategoryDropDown.Properties.Sorted = true;
+            CategoryDropDown.Size = new System.Drawing.Size(174, 20);
+            CategoryDropDown.TabIndex = 8;
+            CategoryDropDown.SelectedValueChanged += CategoryDropDown_SelectedValueChanged;
+            // 
+            // CreatorDropDown
+            // 
+            CreatorDropDown.Location = new System.Drawing.Point(12, 88);
+            CreatorDropDown.Name = "CreatorDropDown";
+            CreatorDropDown.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            CreatorDropDown.Properties.Sorted = true;
+            CreatorDropDown.Size = new System.Drawing.Size(174, 20);
+            CreatorDropDown.TabIndex = 7;
+            CreatorDropDown.SelectedValueChanged += CreatorDropDown_SelectedValueChanged;
+            // 
             // RecipeForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(808, 585);
+            ClientSize = new System.Drawing.Size(1463, 917);
+            Controls.Add(CategoryDropDown);
+            Controls.Add(labelControl3);
+            Controls.Add(labelControl2);
+            Controls.Add(labelControl1);
             Controls.Add(RecipeGridControl);
-            Controls.Add(searchControl1);
+            Controls.Add(FreeTextSearch);
+            Controls.Add(CreatorDropDown);
             DoubleBuffered = true;
             Name = "RecipeForm";
             Text = "Recipe Book";
-            Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)searchControl1.Properties).EndInit();
+            Load += RecipeForm_Load;
+            ((System.ComponentModel.ISupportInitialize)repositoryItemPictureEdit1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)FreeTextSearch.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)RecipeGridControl).EndInit();
             ((System.ComponentModel.ISupportInitialize)RecipeView).EndInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryItemPictureEdit1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewField_layoutViewColumn1_4).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewField_layoutViewColumn1_3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutViewField_layoutViewColumn1_2).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewField_layoutViewColumn1_1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewField_layoutViewColumn1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutViewCard1).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)CategoryDropDown.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)CreatorDropDown.Properties).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-        private DevExpress.XtraEditors.SearchControl searchControl1;
+        private DevExpress.XtraEditors.SearchControl FreeTextSearch;
         private DevExpress.XtraGrid.GridControl RecipeGridControl;
         private DevExpress.XtraGrid.Views.Tile.TileView tileView1;
         private DevExpress.XtraGrid.Views.Layout.LayoutView RecipeView;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn NameCol;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn CategoryCol;
-        private DevExpress.XtraGrid.Columns.LayoutViewColumn ImageUrl;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn CreatorCol;
         private DevExpress.XtraGrid.Columns.LayoutViewColumn ImageCol;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
@@ -302,13 +361,17 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1_4;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1_3;
-        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1_2;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1_1;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1;
         private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
+        private DevExpress.XtraEditors.ComboBoxEdit CategoryDropDown;
+        private DevExpress.XtraEditors.ComboBoxEdit CreatorDropDown;
     }
 }
 

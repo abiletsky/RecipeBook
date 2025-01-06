@@ -29,7 +29,8 @@ namespace RecipeBook
             InitializeComponent();
         }
 
-        Dictionary<string, BitmapImage> imageCache = new Dictionary<string, BitmapImage>(StringComparer.OrdinalIgnoreCase);
+        Dictionary<string, BitmapImage> imageCache = new Dictionary<string, BitmapImage>(StringComparer.OrdinalIgnoreCase); // Probably no need to cache anymore since small image size
+
         void RecipeView_CustomUnboundColumnData(object sender, CustomColumnDataEventArgs e)
         {
             if (e.IsGetData)
@@ -37,7 +38,6 @@ namespace RecipeBook
                 switch (e.Column.FieldName)
                 {
                     case "Image":
-                        var view = sender as LayoutView;
                         string b64Img = (RecipeView.DataSource as IEnumerable<RecipeModel>).ElementAt(e.ListSourceRowIndex).Base64Image;
                         if (!imageCache.TryGetValue(b64Img, out BitmapImage value))
                         {
@@ -68,12 +68,16 @@ namespace RecipeBook
             //    e.Value = value;
             //}
         }
-        
-        private void Form1_Load(object sender, EventArgs e)
+
+        private void RecipeForm_Load(object sender, EventArgs e)
         {
             var recipes = LoadRecipesFromJson();
             RecipeGridControl.DataSource = recipes;
 
+            CreatorDropDown.Properties.Items.AddRange(recipes.Select(r => r.Creator).Distinct().ToArray());
+            CreatorDropDown.Properties.Items.Add(string.Empty);
+            CategoryDropDown.Properties.Items.AddRange(recipes.Select(r => r.Category).Distinct().ToArray());
+            CategoryDropDown.Properties.Items.Add(string.Empty);
         }
 
         private static List<RecipeModel> LoadRecipesFromJson()
@@ -82,6 +86,7 @@ namespace RecipeBook
             var recipeFiles = Directory.GetFiles(recipesDir, "*.json");
             var recipes = new List<RecipeModel>();
 
+            // TODO: Some recipes appear to be duplicated, need to investigate
             foreach (var recipeFile in recipeFiles)
             {
                 var recipeList = JsonConvert.DeserializeObject<List<RecipeModel>>(File.ReadAllText(recipeFile));
@@ -89,6 +94,26 @@ namespace RecipeBook
             }
 
             return recipes;
+        }
+
+        private void CreatorDropDown_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(CreatorDropDown.EditValue.ToString()) || !CreatorDropDown.Properties.Items.Contains(CreatorDropDown.EditValue))
+            {
+                RecipeView.ActiveFilterString = string.Empty;
+                return;
+            }
+            RecipeView.ActiveFilterString = $"Contains([Creator], '{CreatorDropDown.EditValue}')";
+        }
+
+        private void CategoryDropDown_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(CategoryDropDown.EditValue.ToString()) || !CategoryDropDown.Properties.Items.Contains(CategoryDropDown.EditValue))
+            {
+                RecipeView.ActiveFilterString = string.Empty;
+                return;
+            }
+            RecipeView.ActiveFilterString = $"Contains([Category], '{CategoryDropDown.EditValue}')";
         }
     }
 }
