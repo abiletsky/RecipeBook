@@ -76,8 +76,7 @@ namespace RecipeBook
 
             CreatorDropDown.Properties.Items.AddRange(recipes.Select(r => r.Creator).Distinct().ToArray());
             CreatorDropDown.Properties.Items.Add(string.Empty);
-            CategoryDropDown.Properties.Items.AddRange(recipes.Select(r => r.Category).Distinct().ToArray());
-            CategoryDropDown.Properties.Items.Add(string.Empty);
+            CategoryDropDown.Properties.Items.AddRange(recipes.Select(r => r.Category).Distinct().ToArray()); // Empty category already exists from manual recipes
         }
 
         private static List<RecipeModel> LoadRecipesFromJson()
@@ -114,6 +113,18 @@ namespace RecipeBook
                 return;
             }
             RecipeView.ActiveFilterString = $"Contains([Category], '{CategoryDropDown.EditValue}')";
+        }
+
+        private void RecipeView_CardClick(object sender, DevExpress.XtraGrid.Views.Layout.Events.CardClickEventArgs e)
+        {
+            if (e.HitInfo.InFieldSortButton || e.HitInfo.InFieldFilterButton)
+            {
+                e.Handled = true;
+                return;
+            }
+            var row = RecipeView.GetRow(e.RowHandle) as RecipeModel;
+            RecipePopup.ShowDialog(this, new Rectangle(500, 500, 500, 500));
+            Debug.WriteLine("Card clicked " + e.RowHandle + " " + row.Name);
         }
     }
 }

@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecipeForm));
             repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             FreeTextSearch = new DevExpress.XtraEditors.SearchControl();
             RecipeGridControl = new DevExpress.XtraGrid.GridControl();
@@ -52,6 +54,13 @@
             labelControl3 = new DevExpress.XtraEditors.LabelControl();
             CategoryDropDown = new DevExpress.XtraEditors.ComboBoxEdit();
             CreatorDropDown = new DevExpress.XtraEditors.ComboBoxEdit();
+            itemsView1 = new DevExpress.XtraGrid.Views.Items.ItemsView();
+            gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            RecipePopup = new DevExpress.XtraEditors.HtmlContentPopup(components);
+            recipeModelBindingSource = new System.Windows.Forms.BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)repositoryItemPictureEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)FreeTextSearch.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)RecipeGridControl).BeginInit();
@@ -64,6 +73,9 @@
             ((System.ComponentModel.ISupportInitialize)gridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CategoryDropDown.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CreatorDropDown.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)itemsView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)RecipePopup).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)recipeModelBindingSource).BeginInit();
             SuspendLayout();
             // 
             // repositoryItemPictureEdit1
@@ -90,13 +102,18 @@
             RecipeGridControl.Location = new System.Drawing.Point(192, 0);
             RecipeGridControl.MainView = RecipeView;
             RecipeGridControl.Name = "RecipeGridControl";
+            RecipeGridControl.Padding = new System.Windows.Forms.Padding(0, 90, 0, 0);
             RecipeGridControl.Size = new System.Drawing.Size(1271, 917);
             RecipeGridControl.TabIndex = 1;
-            RecipeGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { RecipeView, gridView1 });
+            RecipeGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { RecipeView, gridView1, itemsView1 });
             // 
             // RecipeView
             // 
+            RecipeView.Appearance.FieldCaption.FontStyleDelta = System.Drawing.FontStyle.Bold;
+            RecipeView.Appearance.FieldCaption.Options.UseFont = true;
+            RecipeView.CardHorzInterval = 8;
             RecipeView.CardMinSize = new System.Drawing.Size(393, 359);
+            RecipeView.CardVertInterval = 10;
             RecipeView.Columns.AddRange(new DevExpress.XtraGrid.Columns.LayoutViewColumn[] { ImageCol, CategoryCol, CreatorCol, NameCol });
             RecipeView.GridControl = RecipeGridControl;
             RecipeView.Name = "RecipeView";
@@ -104,17 +121,20 @@
             RecipeView.OptionsBehavior.AllowRuntimeCustomization = false;
             RecipeView.OptionsBehavior.AllowSwitchViewModes = false;
             RecipeView.OptionsBehavior.Editable = false;
-            RecipeView.OptionsItemText.TextToControlDistance = 9;
+            RecipeView.OptionsItemText.TextToControlDistance = 8;
             RecipeView.OptionsMultiRecordMode.MultiColumnScrollBarOrientation = DevExpress.XtraGrid.Views.Layout.ScrollBarOrientation.Vertical;
             RecipeView.OptionsMultiRecordMode.MultiRowScrollBarOrientation = DevExpress.XtraGrid.Views.Layout.ScrollBarOrientation.Vertical;
             RecipeView.OptionsView.AnimationType = DevExpress.XtraGrid.Views.Base.GridAnimationType.AnimateAllContent;
             RecipeView.OptionsView.ContentAlignment = System.Drawing.ContentAlignment.TopCenter;
+            RecipeView.OptionsView.PartialCardsSimpleScrolling = DevExpress.Utils.DefaultBoolean.True;
+            RecipeView.OptionsView.PartialCardWrapThreshold = 300;
             RecipeView.OptionsView.ShowCardCaption = false;
             RecipeView.OptionsView.ShowCardExpandButton = false;
             RecipeView.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             RecipeView.OptionsView.ShowHeaderPanel = false;
             RecipeView.OptionsView.ViewMode = DevExpress.XtraGrid.Views.Layout.LayoutViewMode.MultiColumn;
             RecipeView.TemplateCard = layoutViewCard1;
+            RecipeView.CardClick += RecipeView_CardClick;
             RecipeView.CustomUnboundColumnData += RecipeView_CustomUnboundColumnData;
             // 
             // ImageCol
@@ -153,12 +173,12 @@
             // 
             // layoutViewField_layoutViewColumn1_3
             // 
-            layoutViewField_layoutViewColumn1_3.EditorPreferredWidth = 323;
+            layoutViewField_layoutViewColumn1_3.EditorPreferredWidth = 324;
             layoutViewField_layoutViewColumn1_3.Location = new System.Drawing.Point(0, 326);
             layoutViewField_layoutViewColumn1_3.MaxSize = new System.Drawing.Size(389, 28);
             layoutViewField_layoutViewColumn1_3.MinSize = new System.Drawing.Size(389, 28);
             layoutViewField_layoutViewColumn1_3.Name = "layoutViewField_layoutViewColumn1_3";
-            layoutViewField_layoutViewColumn1_3.Size = new System.Drawing.Size(389, 29);
+            layoutViewField_layoutViewColumn1_3.Size = new System.Drawing.Size(389, 28);
             layoutViewField_layoutViewColumn1_3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             layoutViewField_layoutViewColumn1_3.Spacing = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             layoutViewField_layoutViewColumn1_3.TextSize = new System.Drawing.Size(49, 13);
@@ -173,7 +193,7 @@
             // 
             // layoutViewField_layoutViewColumn1_1
             // 
-            layoutViewField_layoutViewColumn1_1.EditorPreferredWidth = 323;
+            layoutViewField_layoutViewColumn1_1.EditorPreferredWidth = 324;
             layoutViewField_layoutViewColumn1_1.Location = new System.Drawing.Point(0, 298);
             layoutViewField_layoutViewColumn1_1.MaxSize = new System.Drawing.Size(389, 28);
             layoutViewField_layoutViewColumn1_1.MinSize = new System.Drawing.Size(389, 28);
@@ -193,7 +213,7 @@
             // 
             // layoutViewField_layoutViewColumn1
             // 
-            layoutViewField_layoutViewColumn1.EditorPreferredWidth = 323;
+            layoutViewField_layoutViewColumn1.EditorPreferredWidth = 324;
             layoutViewField_layoutViewColumn1.Location = new System.Drawing.Point(0, 270);
             layoutViewField_layoutViewColumn1.MaxSize = new System.Drawing.Size(389, 28);
             layoutViewField_layoutViewColumn1.MinSize = new System.Drawing.Size(389, 28);
@@ -207,10 +227,9 @@
             // 
             layoutViewCard1.CustomizationFormText = "TemplateCard";
             layoutViewCard1.GroupBordersVisible = false;
-            layoutViewCard1.HeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
             layoutViewCard1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutViewField_layoutViewColumn1_1, layoutViewField_layoutViewColumn1_3, layoutViewField_layoutViewColumn1_4, layoutViewField_layoutViewColumn1 });
-            layoutViewCard1.Name = "layoutViewCard1";
-            layoutViewCard1.OptionsItemText.TextToControlDistance = 9;
+            layoutViewCard1.Name = "layoutViewTemplateCard";
+            layoutViewCard1.OptionsItemText.TextToControlDistance = 8;
             layoutViewCard1.Padding = new DevExpress.XtraLayout.Utils.Padding(2, 2, 2, 2);
             layoutViewCard1.Text = "TemplateCard";
             // 
@@ -314,6 +333,63 @@
             CreatorDropDown.TabIndex = 7;
             CreatorDropDown.SelectedValueChanged += CreatorDropDown_SelectedValueChanged;
             // 
+            // itemsView1
+            // 
+            itemsView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { gridColumn6, gridColumn7, gridColumn8, gridColumn9 });
+            itemsView1.GridControl = RecipeGridControl;
+            itemsView1.HtmlTemplate.Styles = resources.GetString("itemsView1.HtmlTemplate.Styles");
+            itemsView1.HtmlTemplate.Template = resources.GetString("itemsView1.HtmlTemplate.Template");
+            itemsView1.Name = "itemsView1";
+            itemsView1.OptionsBehavior.Editable = false;
+            itemsView1.OptionsView.AnimationType = DevExpress.XtraGrid.Views.Base.GridAnimationType.AnimateAllContent;
+            itemsView1.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
+            // 
+            // gridColumn6
+            // 
+            gridColumn6.Caption = "Image";
+            gridColumn6.FieldName = "Image";
+            gridColumn6.Name = "gridColumn6";
+            gridColumn6.Tag = "";
+            gridColumn6.Visible = true;
+            gridColumn6.VisibleIndex = 0;
+            // 
+            // gridColumn7
+            // 
+            gridColumn7.Caption = "Category";
+            gridColumn7.FieldName = "Category";
+            gridColumn7.Name = "gridColumn7";
+            gridColumn7.UnboundType = DevExpress.Data.UnboundColumnType.String;
+            gridColumn7.Visible = true;
+            gridColumn7.VisibleIndex = 1;
+            // 
+            // gridColumn8
+            // 
+            gridColumn8.Caption = "Creator";
+            gridColumn8.FieldName = "Creator";
+            gridColumn8.Name = "gridColumn8";
+            gridColumn8.UnboundType = DevExpress.Data.UnboundColumnType.String;
+            gridColumn8.Visible = true;
+            gridColumn8.VisibleIndex = 2;
+            // 
+            // gridColumn9
+            // 
+            gridColumn9.Caption = "Name";
+            gridColumn9.FieldName = "Name";
+            gridColumn9.Name = "gridColumn9";
+            gridColumn9.UnboundType = DevExpress.Data.UnboundColumnType.String;
+            gridColumn9.Visible = true;
+            gridColumn9.VisibleIndex = 3;
+            // 
+            // RecipePopup
+            // 
+            RecipePopup.DataContext = recipeModelBindingSource;
+            RecipePopup.HtmlTemplate.Styles = resources.GetString("htmlContentPopup1.HtmlTemplate.Styles");
+            RecipePopup.HtmlTemplate.Template = resources.GetString("htmlContentPopup1.HtmlTemplate.Template");
+            // 
+            // recipeModelBindingSource
+            // 
+            recipeModelBindingSource.DataSource = typeof(RecipeModel);
+            // 
             // RecipeForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -342,6 +418,9 @@
             ((System.ComponentModel.ISupportInitialize)gridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)CategoryDropDown.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)CreatorDropDown.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)itemsView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)RecipePopup).EndInit();
+            ((System.ComponentModel.ISupportInitialize)recipeModelBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -361,17 +440,24 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1_4;
-        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1_3;
-        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1_1;
-        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1;
-        private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
         private DevExpress.XtraEditors.ComboBoxEdit CategoryDropDown;
         private DevExpress.XtraEditors.ComboBoxEdit CreatorDropDown;
+        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1_4;
+        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1_3;
+        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1_1;
+        private DevExpress.XtraGrid.Views.Layout.LayoutViewField layoutViewField_layoutViewColumn1;
+        private DevExpress.XtraGrid.Views.Layout.LayoutViewCard layoutViewCard1;
+        private DevExpress.XtraGrid.Views.Items.ItemsView itemsView1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraEditors.HtmlContentPopup RecipePopup;
+        private System.Windows.Forms.BindingSource recipeModelBindingSource;
     }
 }
 
